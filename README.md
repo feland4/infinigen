@@ -4,7 +4,7 @@
 - Mathura Kanapathippillai,
 - Andres Felipe Ordonez Bustos,
 
-#### Nom du projet GitLab: INF8214_TP2
+#### Nom du projet: Infinigen
 #### Date: 2 Mai 2024
 #### Version: 1.0
 
