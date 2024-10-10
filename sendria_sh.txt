@@ -1,0 +1,1 @@
+sendria --smtp-port 1025 --http-port 1080 --db ./sendria_db.sqlite

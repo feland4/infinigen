@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Connexion</title>
+  <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+  <div class="wrapper">
+    <h2>Connexion</h2>
+
+    <!-- Message flash -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    <div class="flash-messages">
+      {% for category, message in messages %}
+      {% if category == 'email-non-enregistre' %}
+      <div class="flash-message error">{{ message }}</div>
+      {% elif category == 'authentication_email_sent' %}
+      <div class="flash-message success">{{ message }}</div>
+      {% elif category == 'inscription-success' %}
+      <div class="flash-message success">{{ message }}</div>      
+      {% endif %}
+      {% endfor %}
+    </div>
+    {% endif %}
+    {% endwith %}
+    <!-- Fin Message flash -->
+    
+    <form action="{{ url_for('login') }}" method="POST">
+      <div class="input-box">
+        <input type="email" name="courriel" placeholder="Adresse e-mail" required>
+      </div>
+      <div class="input-box button">
+        <input type="submit" value="Se connecter">
+      </div>
+      <div class="text">
+        <h3>Pas encore de compte? <a href="{{ url_for('inscription') }}">Inscrivez-vous ici</a></h3>
+      </div>
+    </form>
+  </div>
+</body>
+</html>

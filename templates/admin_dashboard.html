@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+</head>
+<body>
+    <h1>Admin Dashboard</h1>
+    <a href="{{ url_for('analyse') }}" class="btn">Démarrer une nouvelle analyse</a>
+    <a href="{{ url_for('logout') }}" class="btn logout">Déconnexion</a>
+    {% for user in users %}
+        <div class="user-section">
+            <h2>User: {{ user.email }} - {{ user.first_name }} {{ user.last_name }}
+                <form action="{{ url_for('delete_user', user_id=user.id) }}" method="post" style="display: inline;">
+                    <button type="submit" class="btn btn-danger" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet Utilisateur?, Cette action est irreversible');">Supprimer Utilisateur</button>
+                </form>
+            </h2>
+            {% if user.runs %}
+                <ul>
+                    {% for run in user.runs %}
+                        <li>
+                            Analyse ID: {{ run.id }} effectuée le {{ run.analysis_date }} - <a href="{{ url_for('display_results', run_id=run.id) }}">Voir les résultats</a>
+                            <form action="{{ url_for('delete_run', run_id=run.id) }}" method="post" style="display: inline;">
+                                <button type="submit" class="btn btn-danger" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette analyse ?');">Supprimer Run</button>
+                            </form>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>Aucune analyse trouvée.</p>
+            {% endif %}
+        </div>
+    {% endfor %}
+</body>
+</html>

@@ -1,0 +1,1 @@
+flask create-admin admin@example.com Prenom Nom_de_famille

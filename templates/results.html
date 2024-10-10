@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Résultats</title>
+    <!-- Bootstrap CSS pour l'apparence en 2 colonnes des résultats -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- CSS conforme avec le reste de l'app -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+    <!-- custom CSS pour overrride les margins (centered) du CSS Bootstrap -->
+    <style>
+        .container {
+            margin-left: 0;
+            padding-left: 0;
+            width: auto;
+            max-width: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <div class="mb-3">
+           <!-- Conditionnel basé sur le type d'utilisateur -->
+           <a href="{{ url_for('admin_dashboard') if session.get('role') == 'admin' else url_for('dashboard') }}" class="btn btn-primary">Historique</a>
+           <a href="{{ url_for('logout') }}" class="btn btn-danger">Déconnexion</a>
+       </div>
+        <h3>Résultats de l'analyse ID: {{ run_id }}</h3><br><br>
+        
+        <div class="row">
+            <div class="col-md-6">
+                <h4>Fichiers fournis</h4>
+                Fichier de counts: {{ text_results['counts_file'] }}<br>
+                Fichier de metadata: {{ text_results['metadata_file'] }}<br>
+                <br>
+                <h4>Paramètres d'analyse</h4>
+                Refit cooks outliers: {{ text_results['refit_cooks'] }}<br>
+                Counts minimum par gène: {{ text_results['min_reads_per_gene'] }}<br>
+                Seuil de alpha (p-value): {{text_results['alpha_thres'] }}<br>
+                Seuil de Log2FoldChange: {{text_results['lfc_thres'] }}<br>
+                <br>
+                <h4>Résultat statistique de l'analyse d'expression génique différentiel de: </h4>
+                <h5>{{ text_results['design_factor'] }} {{text_results['condition_1'] }} vs {{ text_results['condition_2'] }}</h5>
+
+                <a href="{{ url_for('download_csv', run_id=run_id) }}" class="btn btn-success">Télécharger le fichier CSV</a>
+
+            </div>
+            <div class="col-md-6">
+                <h4>Figure: Volcano Plot</h4>
+                <!-- volcano plot -->
+                <div class="text-center">
+                    <img src="data:image/png;base64, {{ volcanoplot_path }}" alt="Volcano plot" class="img-fluid" style="width: 100%; max-width: 500px;">
+                </div>
+                <br><br>
+                <h4>Figure: Heatmap</h4>
+                <!-- heatmap -->
+                <div class="text-center">
+                    <img src="data:image/png;base64, {{ heatmap_path }}" alt="Heatmap" class="img-fluid mb-3" style="width: 100%; max-width: 500px;">
+                </div>
+                <br>
+                
+                
+            </div>
+        </div>
+    </div>
+</body>
+</html>

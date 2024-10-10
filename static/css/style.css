@@ -1,0 +1,130 @@
+/* style.css */
+@import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f0f0f0;
+}
+
+.wrapper {
+  width: 100%;
+  max-width: 400px;
+  background: #fff;
+  padding: 25px;
+  border-radius: 5px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.wrapper h2 {
+  color: #333;
+  font-size: 24px;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.input-box {
+  margin-bottom: 20px;
+}
+
+.input-box input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  color: #333;
+}
+
+.policy {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.policy input[type="checkbox"] {
+  margin-right: 10px;
+}
+
+.policy h3 {
+  font-size: 14px;
+  color: #666;
+}
+
+.input-box.button {
+  margin-top: 10px;
+}
+
+.input-box.button input[type="submit"] {
+  background-color: #183E47;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.input-box.button input[type="submit"]:hover {
+  background-color: #45482B;
+}
+
+.text h3 {
+  text-align: center;
+  color: #666;
+}
+
+.text h3 a {
+  color: #183E47;
+  text-decoration: none;
+}
+
+.text h3 a:hover {
+  text-decoration: underline;
+}
+
+.btn {
+  display: inline-block;
+  padding: 10px 15px;
+  font-size: 16px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: #4CAF50;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0 9px #999;
+}
+
+.btn:hover {background-color: #3e8e41}
+
+.btn:active {
+  background-color: #3e8e41;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+
+.flash-message {
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+}
+
+.flash-message.error {
+  background-color: #f44336; /* Red background for error messages */
+  color: white;
+}
+
+.flash-message.success {
+  background-color: #4CAF50; /* Green background for success messages */
+  color: white;
+}

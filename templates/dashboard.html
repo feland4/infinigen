@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Tableau de bord</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+</head>
+<body>
+    <h1>Historique des analyses</h1>
+    {% if user_runs %}
+        <ul>
+            {% for run in user_runs %}
+                <li>
+                    Analyse ID: {{ run.id }} effectuée le {{ run.analysis_date }} - <a href="{{ url_for('display_results', run_id=run.id) }}">Voir les résultats</a>
+                    <form action="{{ url_for('delete_run', run_id=run.id) }}" method="post" style="display: inline;">
+                        <button type="submit" class="btn btn-danger" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette analyse ?');">Supprimer</button>
+                    </form>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Aucune analyse trouvée.</p>
+    {% endif %}
+    <a href="{{ url_for('analyse') }}" class="btn">Démarrer une nouvelle analyse</a>
+    <!-- Logout Link -->
+    <a href="{{ url_for('logout') }}" class="btn">Déconnexion</a>
+</body>
+</html>
